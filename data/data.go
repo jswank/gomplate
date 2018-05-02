@@ -86,13 +86,15 @@ func parseCSV(args ...string) (records [][]string, hdr []string) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	if hdr == nil {
-		hdr = records[0]
-		records = records[1:]
-	} else if len(hdr) == 0 {
-		hdr = make([]string, len(records[0]))
-		for i := range hdr {
-			hdr[i] = autoIndex(i)
+	if len(records) > 0 {
+		if hdr == nil {
+			hdr = records[0]
+			records = records[1:]
+		} else if len(hdr) == 0 {
+			hdr = make([]string, len(records[0]))
+			for i := range hdr {
+				hdr[i] = autoIndex(i)
+			}
 		}
 	}
 	return records, hdr
