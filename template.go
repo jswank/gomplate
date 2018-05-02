@@ -29,7 +29,7 @@ type tplate struct {
 
 func (t *tplate) toGoTemplate(g *gomplate) (*template.Template, error) {
 	tmpl := template.New(t.name)
-	tmpl.Option("missingkey=error")
+	tmpl.Option("missingkey=default")
 	tmpl.Funcs(g.funcMap)
 	tmpl.Delims(g.leftDelim, g.rightDelim)
 	return tmpl.Parse(t.contents)
